@@ -1,4 +1,4 @@
-name: build_esd
+name: test
 
 on:
   push:
@@ -18,7 +18,8 @@ jobs:
           python.exe -u <<'PYTHON'
           ps1 = "test.ps1"
           text = """
-          Write-Output "Hello World."
+          Write-Output "Write-Output: Hello World."
+          Write-Host "Write-Host: Hello World."
           """
 
           with open(ps1, "w", encoding="utf_8_sig") as f:
