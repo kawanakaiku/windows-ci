@@ -73,7 +73,9 @@ jobs:
         shell: powershell
         run: |
           cd Optimize-Offline
-          powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          Set-Executionpolicy Unrestricted
+          .\Start-Optimize.ps1
           move.exe install.esd ..
           
       - name: Store esd files
