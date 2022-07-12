@@ -136,3 +136,6 @@ jobs:
           .\test.ps1
           cd Optimize-Offline
           powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          
+      - name: Waiting for debugger
+        uses: mxschmitt/action-tmate@v3
