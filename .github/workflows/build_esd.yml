@@ -72,8 +72,6 @@ jobs:
       - name: Execute
         shell: powershell
         run: |
-          exit 
-        
           cd Optimize-Offline
           powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           move.exe install.esd ..
@@ -85,5 +83,5 @@ jobs:
           path: install.esd
           
       - name: Waiting for debugger
-        if: always()
+        if: failure()
         uses: mxschmitt/action-tmate@v3
