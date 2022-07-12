@@ -72,6 +72,8 @@ jobs:
       - name: Execute
         shell: powershell
         run: |
+          exit 
+        
           cd Optimize-Offline
           powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           move.exe install.esd ..
