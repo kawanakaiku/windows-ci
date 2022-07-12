@@ -1,0 +1,33 @@
+name: build_esd
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/test.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - name: Config
+        shell: bash
+        run: |          
+          python.exe -u <<'PYTHON'
+          ps1 = "test.ps1"
+          text = """
+          Write-Output "Hello World."
+          """
+
+          with open(ps1, "w", encoding="utf_8_sig") as f:
+            f.write(text)
+          PYTHON
+        
+      - name: Execute
+        shell: powershell
+        run: |
+          Set-Executionpolicy Unrestricted
+          .\test.ps1
+          
