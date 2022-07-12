@@ -76,7 +76,7 @@ jobs:
           # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           Set-Executionpolicy Unrestricted
           .\Start-Optimize.ps1
-          Move-Item install.esd ..
+          Move-Item install.wim ..
           
       - name: Store esd files
         uses: actions/upload-artifact@v3
