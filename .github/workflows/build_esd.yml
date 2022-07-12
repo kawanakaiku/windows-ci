@@ -57,7 +57,7 @@ jobs:
       - name: Download source
         shell: bash
         run: |
-          test -f install.wim && exit || true
+          test -f C:/install.wim && exit || true
           
           python.exe -u <<'PYTHON'
           from urllib.request import urlopen
