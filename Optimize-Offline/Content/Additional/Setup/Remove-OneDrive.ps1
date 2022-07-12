@@ -158,12 +158,6 @@ If (([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::
 {
 	Clear-Host
 	Write-Host "Remove the Microsoft OneDrive component store files?" -ForegroundColor Yellow
-	$RemoveComponentFiles = Read-Host "[ y / N ] "
-	Switch ($RemoveComponentFiles)
- {
-		Y { Remove-OneDrive -RemoveComponents; Break }
-		N { Remove-OneDrive; Break }
-		Default { Remove-OneDrive; Break }
-	}
+	Remove-OneDrive -RemoveComponents
 }
 Else { Write-Warning "Elevation is required to remove Microsoft OneDrive. Please relaunch this script as an administrator."; Start-Sleep 3; Exit }
