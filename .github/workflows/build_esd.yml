@@ -22,7 +22,7 @@ jobs:
           import json
           class ObjectLike(dict):
             __getattr__ = dict.get
-          wim_file = os.path.join(os.getcwd(), "install.wim")
+          wim_file = os.path.join(os.getcwd(), "C:\\install.wim")
           conf_file = os.path.join(os.getcwd(), "Optimize-Offline", "Configuration.json")
           with open(conf_file, "r", encoding="utf_8_sig") as f:
             conf_json = json.loads(f.read())
@@ -33,7 +33,7 @@ jobs:
           conf_json["DormantDefender"] = True
           conf_json["Additional"]["NetFx3"] = True
           conf_json["ComponentCleanup"] = True
-          # conf_json["CompressionType"] = "Solid"
+          conf_json["CompressionType"] = "Solid"
           conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
           conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
           conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
@@ -51,7 +51,7 @@ jobs:
       - name: Cache
         uses: actions/cache@v3
         with:
-          path: install.wim
+          path: C:/install.wim
           key: Win10_21H2_Japanese_x64.wim
           
       - name: Download source
@@ -61,7 +61,7 @@ jobs:
           
           python.exe -u <<'PYTHON'
           from urllib.request import urlopen
-          with open('install.wim', 'wb') as f:
+          with open('C:\\install.wim', 'wb') as f:
             for i in ['aa', 'ab', 'ac', 'ad', 'ae']:
               url = 'https://github.com/kawanakaiku/test-ci/releases/download/win10/Win10_21H2_Japanese_x64.wim_'+i
               print(url)
@@ -76,13 +76,13 @@ jobs:
           # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           Set-Executionpolicy Unrestricted
           .\Start-Optimize.ps1
-          Move-Item install.wim ..
+          Move-Item install.esd ..
           
       - name: Store esd files
         uses: actions/upload-artifact@v3
         with:
-          name: install.wim
-          path: install.wim
+          name: install.esd
+          path: install.esd
           
       - name: Waiting for debugger
         if: failure()
