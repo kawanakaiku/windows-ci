@@ -1,13 +1,18 @@
 {
 	"Name": [
 		"App.StepsRecorder*",
-    "App.Support.QuickAssist*",
+		"App.Support.QuickAssist*",
 		"OneCoreUAP.OneSync*",
 		"DirectX.Configuration.Database*",
 		"Hello.Face.*",
-    "Language.*",
-	  "MathRecognizer*",
+		"Language.*",
+		"MathRecognizer*",
 		"Microsoft.Windows.MSPaint*",
-		"Microsoft.Windows.WordPad*"
+		"Microsoft.Windows.WordPad*",
+		"OpenSSH.Client*",
+		"Browser.InternetExplorer*",
+		"Microsoft.Windows.PowerShell.ISE*",
+		"Media.WindowsMediaPlayer*",
+		"Media.WindowsMediaPlayer*"
 	]
 }
