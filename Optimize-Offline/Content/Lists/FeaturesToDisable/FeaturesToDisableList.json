@@ -1,7 +1,14 @@
 {
 	"FeatureName" : [
-    "MSRDC-Infrastructure",
+    		"MSRDC-Infrastructure",
 		"WorkFolders-Client",
-		"Printing-XPSServices-Features"
+		"Printing-XPSServices-Features",
+		"WindowsMediaPlayer",
+		"Printing-XPSServices-Features",
+		"WCF-Services45",
+		"WCF-TCP-PortSharing45",
+		"WorkFolders-Client",
+		"SearchEngine-Client-Package",
+		"Internet-Explorer-Optional-amd64"
 	]
 }
