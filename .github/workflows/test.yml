@@ -20,6 +20,7 @@ jobs:
           text = """
           Write-Output "Write-Output: Hello World."
           Write-Host "Write-Host: Hello World."
+          Start-Sleep 10
           """
 
           with open(ps1, "w", encoding="utf_8_sig") as f:
