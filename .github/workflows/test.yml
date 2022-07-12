@@ -20,6 +20,7 @@ jobs:
           text = """
           Write-Output "Write-Output: Hello World."
           Write-Host "Write-Host: Hello World."
+          Write-Warning "Write-Warning: Hello World."
           Start-Sleep 10
           """
 
