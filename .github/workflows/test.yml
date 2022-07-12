@@ -138,4 +138,5 @@ jobs:
           powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           
       - name: Waiting for debugger
+        if: always()
         uses: mxschmitt/action-tmate@v3
