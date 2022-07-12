@@ -1,0 +1,19 @@
+{
+	"DisplayName": [
+		"Microsoft.BioEnrollment",
+		"Microsoft.Windows.CallingShellApp",
+		"Microsoft.MicrosoftEdge",
+        "Microsoft.MicrosoftEdgeDevToolsClient",
+		"Microsoft.PPIProjection",
+		"Microsoft.Windows.SecHealthUI",
+		"Microsoft.Windows.ContentDeliveryManager",
+		"Microsoft.Windows.FileExplorer",
+		"Microsoft.Windows.NarratorQuickStart",
+		"Microsoft.Windows.ParentalControls",
+		"Microsoft.Windows.SecureAssessmentBrowser",
+		"Microsoft.Windows.XGpuEjectDialog",
+		"Microsoft.XboxGameCallableUI",
+		"MicrosoftWindows.UndockedDevKit",
+		"NcsiUwpApp"
+	]
+}

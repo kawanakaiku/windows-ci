@@ -1,0 +1,20 @@
+{
+	"DisplayName": [
+		"Microsoft.AccountsControl",
+		"Microsoft.CredDialogHost",
+		"Microsoft.MicrosoftEdge",
+		"Microsoft.MicrosoftEdgeDevToolsClient",
+		"Microsoft.UI.Xaml.CBS",
+		"Microsoft.Windows.CloudExperienceHost",
+		"Microsoft.Windows.OOBENetworkCaptivePortal",
+		"Microsoft.Windows.OOBENetworkConnectionFlow",
+		"Microsoft.Windows.ShellExperienceHost",
+		"Microsoft.Windows.StartMenuExperienceHost",
+		"Microsoft.Windows.SecureAssessmentBrowser",
+		"MicrosoftWindows.Client.CBS",
+		"MicrosoftWindows.UndockedDevKit",
+		"NcsiUwpApp",
+		"windows.immersivecontrolpanel",
+		"Windows.PrintDialog"
+	]
+}
