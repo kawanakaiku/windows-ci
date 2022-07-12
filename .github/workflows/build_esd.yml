@@ -35,3 +35,60 @@ jobs:
               f.write(part)
           PYTHON
           
+      - name: Config
+        shell: bash
+        run: |          
+          python.exe -u <<'PYTHON'
+          import os
+          import json
+          class AttributeDict:
+            def __init__(self,obj): self.obj=obj
+            def __getstate__(self): return self.obj.items()
+            def __setstate__(self,items):
+              if not hasattr(self,'obj'): self.obj={}
+              for (key,val) in items: self.obj[key]=val
+            def __getattr__(self,name):
+              return self.obj.get(name) if name in self.obj else None
+            def fields(self): return self.obj
+            def keys(self): return self.obj.keys()
+          wim_file = os.path.join(os.getcwd(), "install.wim")
+          conf_file = os.path.join(os.getcwd(), "Optimize-Offline", "Configuration.json")
+          with open(conf_file, "r", encoding="utf_8_sig") as f:
+            conf_json = json.loads(f.read(), object_hook=AttributeDict)
+            
+          conf_json.SourcePath = wim_file
+          conf_json.WindowsApps = "Whitelist"
+          conf_json.SystemApps = "Blacklist"
+          conf_json.DormantDefender = True
+          conf_json.Additional.NetFx3 = True
+          conf_json.ComponentCleanup = True
+          conf_json.CompressionType = "Solid"
+          conf_json.SelectiveRegistry.DisableWindowsUpgrade = True
+          conf_json.SelectiveRegistry.DisableWindowsUpdateMicrosoft = True
+          conf_json.SelectiveRegistry.DisableDriverUpdate = False
+          conf_json.SelectiveRegistry.DormantOneDrive = True
+          conf_json.SelectiveRegistry.Disable3rdPartyApps = True
+          conf_json.SelectiveRegistry.RemoveTaskbarPinnedIcons = True
+          conf_json.SelectiveRegistry.DisableTeamsApp = True
+          conf_json.SelectiveRegistry.RunAsTiContextMenu = True
+
+          with open(conf_file, "w", encoding="utf_8_sig") as f:
+            json.dump(conf_json, f, indent=2)
+          PYTHON
+        
+      - name: Execute
+        shell: cmd
+        run: |
+          cd Optimize-Offline
+          powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          move.exe install.esd ..
+          
+      - name: Store esd files
+        uses: actions/upload-artifact@v3
+        with:
+          name: install.esd
+          path: install.esd
+          
+      - name: Waiting for debugger
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
