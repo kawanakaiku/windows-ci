@@ -32,6 +32,8 @@ jobs:
           conf_json["SystemApps"] = "Blacklist"
           conf_json["DormantDefender"] = True
           conf_json["Registry"] = True
+          conf_json["Additional"]["Setup"] = True
+          conf_json["Additional"]["RegistryTemplates"] = True
           conf_json["Additional"]["NetFx3"] = False
           conf_json["ComponentCleanup"] = True
           conf_json["CompressionType"] = "Solid"
