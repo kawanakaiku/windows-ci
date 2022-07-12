@@ -99,7 +99,7 @@ Function Optimize-Offline
 		},
 		[Parameter(HelpMessage = 'Removal of windows services.')]
 		[ValidateSet('None', 'List', 'Advanced', 'Select')]
-		[String]$Services
+		[String]$Services,
 		[int32]$ImageIndex
 	)
 
