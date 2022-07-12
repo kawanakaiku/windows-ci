@@ -83,5 +83,5 @@ jobs:
           path: install.esd
           
       - name: Waiting for debugger
-        if: failure()
+        if: always()
         uses: mxschmitt/action-tmate@v3
