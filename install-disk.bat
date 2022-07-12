@@ -36,3 +36,6 @@ DISM /Apply-Image /ImageFile:"%wim_file%" /index:1 /ApplyDir:W:\
 DISM /Image:W:\ /Set-LayeredDriver:6
 
 BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
+
+MountVol W: /D
+MountVol S: /D
