@@ -70,7 +70,7 @@ jobs:
           PYTHON
         
       - name: Execute
-        shell: cmd
+        shell: powershell
         run: |
           cd Optimize-Offline
           powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
