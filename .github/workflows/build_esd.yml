@@ -1,0 +1,37 @@
+name: build_esd
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'build_esd/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Cache build 1
+        uses: actions/cache@v3
+        with:
+          path: install.wim
+          key: Win10_21H2_Japanese_x64.wim
+          
+      - name: Download source
+        shell: bash
+        run: |
+          test -f install.wim && exit || true
+          
+          python.exe -u <<'PYTHON'
+          from urllib.request import urlopen
+          with open('install.wim', 'wb') as f:
+            for i in ['aa', 'ab', 'ac', 'ad', 'ae']:
+              url = 'https://github.com/kawanakaiku/test-ci/releases/download/win10/Win10_21H2_Japanese_x64.wim_'+i
+              print(url)
+              part = urlopen(url).read()
+              f.write(part)
+          PYTHON
+          
