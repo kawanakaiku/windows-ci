@@ -1,9 +1,19 @@
 ::run as admin
 if defined SESSIONNAME (PowerShell start """%~0""" -verb RunAs & Exit /B)
 
+@echo off
+
 echo list disk | diskpart
 echo input disk number
 set /p disk_num=
+
+echo input wim file
+set /p wim_file=
+
+if not exist "%wim_file%" (
+  echo "%wim_file%" does not exist
+  exit /b 1
+)
 
 (
   echo SELECT DISK %disk_num%
@@ -21,7 +31,7 @@ set /p disk_num=
   echo FORMAT QUICK FS=NTFS
 ) | diskpart
 
-DISM /Apply-Image /ImageFile:D:\Sources\install.wim /index:1 /ApplyDir:W:\
+DISM /Apply-Image /ImageFile:"%wim_file%" /index:1 /ApplyDir:W:\
 
 DISM /Image:W:\ /Set-LayeredDriver:6
 
