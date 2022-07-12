@@ -71,6 +71,7 @@ jobs:
           conf_json.SelectiveRegistry.RemoveTaskbarPinnedIcons = True
           conf_json.SelectiveRegistry.DisableTeamsApp = True
           conf_json.SelectiveRegistry.RunAsTiContextMenu = True
+          conf_json.ImageIndex = 1
 
           with open(conf_file, "w", encoding="utf_8_sig") as f:
             json.dump(conf_json, f, indent=2)
