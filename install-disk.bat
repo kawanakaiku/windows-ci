@@ -3,10 +3,10 @@ if defined SESSIONNAME (PowerShell start """%~0""" -verb RunAs & Exit /B)
 
 echo list disk | diskpart
 echo input disk number
-set input_int=
+set /p disk_num=
 
 (
-  echo SELECT DISK 0
+  echo SELECT DISK %disk_num%
   echo CLEAN
   echo CONVERT GPT
   echo CREATE PARTITION EFI SIZE=100
