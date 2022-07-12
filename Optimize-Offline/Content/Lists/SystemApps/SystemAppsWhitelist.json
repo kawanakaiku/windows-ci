@@ -2,8 +2,6 @@
 	"DisplayName": [
 		"Microsoft.AccountsControl",
 		"Microsoft.CredDialogHost",
-		"Microsoft.MicrosoftEdge",
-		"Microsoft.MicrosoftEdgeDevToolsClient",
 		"Microsoft.UI.Xaml.CBS",
 		"Microsoft.Windows.CloudExperienceHost",
 		"Microsoft.Windows.OOBENetworkCaptivePortal",
