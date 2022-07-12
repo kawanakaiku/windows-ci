@@ -33,7 +33,7 @@ jobs:
           conf_json["DormantDefender"] = True
           conf_json["Additional"]["NetFx3"] = True
           conf_json["ComponentCleanup"] = True
-          conf_json["CompressionType"] = "Solid"
+          # conf_json["CompressionType"] = "Solid"
           conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
           conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
           conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
@@ -76,13 +76,13 @@ jobs:
           # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           Set-Executionpolicy Unrestricted
           .\Start-Optimize.ps1
-          move.exe install.esd ..
+          Move-Item install.esd ..
           
       - name: Store esd files
         uses: actions/upload-artifact@v3
         with:
-          name: install.esd
-          path: install.esd
+          name: install.wim
+          path: install.wim
           
       - name: Waiting for debugger
         if: failure()
