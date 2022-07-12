@@ -112,6 +112,8 @@ jobs:
               [Void]$LogMutex.ReleaseMutex()
             }
           }
+          
+          $ModuleLog = 'u.log'
 
           New-Alias -Name Log -Value Write-Log
 
