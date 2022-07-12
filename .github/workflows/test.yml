@@ -12,6 +12,8 @@ jobs:
     runs-on: windows-2019
 
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Config
         shell: bash
         run: |          
@@ -119,7 +121,8 @@ jobs:
 
           Log "Log: Hello World."
           
-          Start-Sleep 10
+          $textfile = "Optimize-Offline\Start-Optimize.ps1"
+          $(Write-Output 'Write-Output "starting..."'; Get-Content $textfile) | Set-Content $textfile
           """
 
           with open(ps1, "w", encoding="utf_8_sig") as f:
@@ -131,4 +134,5 @@ jobs:
         run: |
           Set-Executionpolicy Unrestricted
           .\test.ps1
-          
+          cd Optimize-Offline
+          powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
