@@ -22,7 +22,7 @@ jobs:
           import json
           class ObjectLike(dict):
             __getattr__ = dict.get
-          wim_file = os.path.join(os.getcwd(), "C:\\install.wim")
+          wim_file = os.path.join(os.getcwd(), "C:/install.wim")
           conf_file = os.path.join(os.getcwd(), "Optimize-Offline", "Configuration.json")
           with open(conf_file, "r", encoding="utf_8_sig") as f:
             conf_json = json.loads(f.read())
@@ -61,7 +61,7 @@ jobs:
           
           python.exe -u <<'PYTHON'
           from urllib.request import urlopen
-          with open('C:\\install.wim', 'wb') as f:
+          with open('C:/install.wim', 'wb') as f:
             for i in ['aa', 'ab', 'ac', 'ad', 'ae']:
               url = 'https://github.com/kawanakaiku/test-ci/releases/download/win10/Win10_21H2_Japanese_x64.wim_'+i
               print(url)
