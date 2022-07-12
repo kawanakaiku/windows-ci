@@ -230,12 +230,7 @@ If (([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::
 {
     Clear-Host
     Write-Host "Have you inspected this script to make sure nothing is being disabled that will be required by the running system?" -ForegroundColor Yellow
-    $VerifyRun = Read-Host "[ y / N ] "
-    Switch ($VerifyRun)
-    {
-        Y { Write-Host "`nSetting Additional Privacy Settings...`n"; Set-Additional }
-        N { Write-Host "`nNo, go back."`n; Return }
-        Default { Write-Host "`nNo, go back."`n; Return }
-    }
+    Write-Host "`nSetting Additional Privacy Settings...`n"
+    Set-Additional
 }
 Else { Write-Warning "This script requires administrative permissions to run."; Exit }
