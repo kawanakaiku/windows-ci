@@ -41,6 +41,13 @@ if not exist W: (
 
 DISM /Apply-Image /ImageFile:"%wim_file%" /index:1 /ApplyDir:W:\
 
+if not exist W:\Windows (
+  echo W:\Windows does not exist
+  echo maybe failed to install
+  pause
+  exit /b 1
+)
+
 DISM /Image:W:\ /Set-LayeredDriver:6
 
 BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
@@ -52,11 +59,6 @@ if not errorlevel 0 (
   echo errorlevel not 0
   pause
   exit /b %errorlevel%
-) else if not exist W:\Windows (
-  echo W:\Windows does not exist
-  echo maybe failed to install
-  pause
-  exit /b 1
 ) else if /i "%reboot:~0,1%"=="y" (
   shutdown.exe /r /t 0
 )
