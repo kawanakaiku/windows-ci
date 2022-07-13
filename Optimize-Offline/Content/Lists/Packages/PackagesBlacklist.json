@@ -3,7 +3,7 @@
 		"Microsoft-Windows-Hello-Face-*",
 		"Microsoft-Windows-LanguageFeatures-*",
 		"Microsoft-Windows-QuickAssist-Package*",
-    "Microsoft-Windows-StepsRecorder-Package*",
-    "Microsoft-Windows-TabletPCMath-Package*"
+                "Microsoft-Windows-StepsRecorder-Package*",
+                "Microsoft-Windows-TabletPCMath-Package*"
 	]
 }
