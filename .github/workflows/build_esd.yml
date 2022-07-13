@@ -37,7 +37,7 @@ jobs:
           conf_json["Additional"]["Setup"] = True
           conf_json["Additional"]["RegistryTemplates"] = False  # True
           conf_json["Additional"]["NetFx3"] = False
-          conf_json["ComponentCleanup"] = True
+          # conf_json["ComponentCleanup"] = True
           conf_json["CompressionType"] = "Solid"
           conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
           conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
