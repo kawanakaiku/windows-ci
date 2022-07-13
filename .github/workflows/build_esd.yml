@@ -41,7 +41,7 @@ jobs:
           conf_json["Additional"]["NetFx3"] = False
           conf_json["ComponentCleanup"] = True
           conf_json["CompressionType"] = "Solid"
-          conf_json["CompressionType"] = "Fast"
+          # conf_json["CompressionType"] = "Fast"
           conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
           conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
           conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
