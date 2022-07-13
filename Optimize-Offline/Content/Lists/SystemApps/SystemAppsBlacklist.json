@@ -3,7 +3,7 @@
 		"Microsoft.BioEnrollment",
 		"Microsoft.Windows.CallingShellApp",
 		"Microsoft.MicrosoftEdge",
-        "Microsoft.MicrosoftEdgeDevToolsClient",
+        	"Microsoft.MicrosoftEdgeDevToolsClient",
 		"Microsoft.PPIProjection",
 		"Microsoft.Windows.SecHealthUI",
 		"Microsoft.Windows.ContentDeliveryManager",
