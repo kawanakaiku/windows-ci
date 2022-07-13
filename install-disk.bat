@@ -4,11 +4,14 @@ if defined SESSIONNAME (PowerShell start """%~0""" -verb RunAs & Exit /B)
 @echo off
 
 echo list disk | diskpart
-echo input disk number
+echo input disk number:
 set /p disk_num=
 
-echo input wim file
+echo input wim file:
 set /p wim_file=
+
+echo reboot on finish (y/n):
+set /p reboot=
 
 if not exist "%wim_file%" (
   echo "%wim_file%" does not exist
@@ -39,3 +42,5 @@ BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
 
 MountVol W: /D
 MountVol S: /D
+
+if /i "%reboot:~0,1%"=="y" shutdown.exe /r /t 0
