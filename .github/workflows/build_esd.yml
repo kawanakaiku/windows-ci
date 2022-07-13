@@ -33,7 +33,7 @@ jobs:
           conf_json["Capabilities"] = "None"  # "Blacklist"
           conf_json["FeaturesToDisable"] = "None"  # "List"
           conf_json["DormantDefender"] = True
-          conf_json["Registry"] = True
+          conf_json["Registry"] = False
           conf_json["Additional"]["Setup"] = True
           conf_json["Additional"]["RegistryTemplates"] = True
           conf_json["Additional"]["NetFx3"] = False
