@@ -26,15 +26,18 @@ set /p reboot=
   echo CONVERT GPT
   echo CREATE PARTITION EFI SIZE=100
   echo FORMAT QUICK FS=FAT32
-  echo ASSIGN LETTER="S"
+  echo ASSIGN LETTER=S
   echo CREATE PARTITION MSR SIZE=16
   echo CREATE PARTITION PRIMARY
-  echo SHRINK MINIMUM=500
   echo FORMAT QUICK FS=NTFS
-  echo ASSIGN LETTER="W"
-  echo CREATE PARTITION PRIMARY
-  echo FORMAT QUICK FS=NTFS
+  echo ASSIGN LETTER=W
 ) | diskpart
+
+if not exist W: (
+  echo W: does not exist
+  pause
+  exit /b 1
+)
 
 DISM /Apply-Image /ImageFile:"%wim_file%" /index:1 /ApplyDir:W:\
 
@@ -45,4 +48,10 @@ BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
 MountVol W: /D
 MountVol S: /D
 
-if /i "%reboot:~0,1%"=="y" shutdown.exe /r /t 0
+if not errorlevel 0 (
+  echo errorlevel not 0
+  pause
+  exit /b %errorlevel%
+) else if /i "%reboot:~0,1%"=="y" (
+  shutdown.exe /r /t 0
+)
