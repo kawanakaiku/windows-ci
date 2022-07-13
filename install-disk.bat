@@ -10,13 +10,15 @@ set /p disk_num=
 echo input wim file:
 set /p wim_file=
 
+if not exist "%wim_file%" (
+  echo "%wim_file%" does not exist
+  pause
+  exit /b 1
+)
+
 echo reboot on finish (y/n):
 set /p reboot=
 
-if not exist "%wim_file%" (
-  echo "%wim_file%" does not exist
-  exit /b 1
-)
 
 (
   echo SELECT DISK %disk_num%
