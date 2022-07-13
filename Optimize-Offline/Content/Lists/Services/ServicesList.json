@@ -17,12 +17,12 @@
 		"Spooler",
                 "SysMain",
 		"VSS",
-		"UsoSvc",
 		"WaaSMedicSvc",
-		"WSearch",
-		"wuauserv"
+		"WSearch"
 	],
 	"Services_bak": [
 		"FontCache"
+		"UsoSvc",
+		"wuauserv"
 	]
 }
