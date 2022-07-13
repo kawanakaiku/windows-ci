@@ -52,6 +52,11 @@ if not errorlevel 0 (
   echo errorlevel not 0
   pause
   exit /b %errorlevel%
+) else if not exist W:\Windows (
+  echo W:\Windows does not exist
+  echo maybe failed to install
+  pause
+  exit /b 1
 ) else if /i "%reboot:~0,1%"=="y" (
   shutdown.exe /r /t 0
 )
