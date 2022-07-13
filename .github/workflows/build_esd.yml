@@ -30,8 +30,8 @@ jobs:
           conf_json["SourcePath"] = wim_file
           conf_json["WindowsApps"] = "Whitelist"
           conf_json["SystemApps"] = "Blacklist"
-          conf_json["Capabilities"] = "Blacklist"
-          conf_json["FeaturesToDisable"] = "None"
+          conf_json["Capabilities"] = "None"  # "Blacklist"
+          conf_json["FeaturesToDisable"] = "None"  # "List"
           conf_json["DormantDefender"] = True
           conf_json["Registry"] = True
           conf_json["Additional"]["Setup"] = True
