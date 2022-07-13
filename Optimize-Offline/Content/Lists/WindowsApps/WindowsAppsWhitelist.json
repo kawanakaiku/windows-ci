@@ -1,5 +1,8 @@
 {
 	"DisplayName": [
-		"Microsoft.WindowsCamera"
+		"Microsoft.WindowsCamera",
+		"Microsoft.WindowsAlarms",
+		"Microsoft.WindowsCalculator",
+		"Microsoft.WindowsSoundRecorder"
 	]
 }
