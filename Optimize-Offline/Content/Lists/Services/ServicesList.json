@@ -15,10 +15,14 @@
 		"SSDPSRV",
 		"PcaSvc",
 		"Spooler",
+                "SysMain",
 		"VSS",
 		"UsoSvc",
 		"WaaSMedicSvc",
 		"WSearch",
 		"wuauserv"
+	],
+	"Services_bak": [
+		"FontCache"
 	]
 }
