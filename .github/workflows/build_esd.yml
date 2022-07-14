@@ -86,6 +86,7 @@ jobs:
           .\Start-Optimize.ps1
           
       - name: Store esd files
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: install.esd
