@@ -82,4 +82,6 @@ if not errorlevel 0 (
   exit /b %errorlevel%
 ) else if /i "%reboot:~0,1%"=="y" (
   shutdown.exe /r /t 0
+) else (
+  pause
 )
