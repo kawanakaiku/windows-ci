@@ -74,7 +74,7 @@ if "%install_drivers:~0,1%"=="y" (
 )
 
 MountVol W: /D
-MountVol S: /D
+:: MountVol S: /D
 
 if not errorlevel 0 (
   echo errorlevel not 0
