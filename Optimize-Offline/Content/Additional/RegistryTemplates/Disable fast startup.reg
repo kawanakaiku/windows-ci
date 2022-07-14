@@ -1,5 +1,6 @@
 Windows Registry Editor Version 5.00
 
 ; Disable fast statup
+; boot loops and setup wont start
 ;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power]
 ;"HiberbootEnabled"=dword:00000000
