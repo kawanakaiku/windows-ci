@@ -71,8 +71,8 @@ if "%install_drivers:~0,1%"=="y" (
   Dism /Image:W:\ /Add-Driver /Driver:"!drivers_dir!" /Recurse
 )
 
-MountVol W: /D
-:: MountVol S: /D
+:: MountVol W: /D
+MountVol S: /D
 
 if not errorlevel 0 (
   echo errorlevel not 0
