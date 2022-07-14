@@ -25,10 +25,10 @@
 		"RemoteRegistry", "RemoteAccess",
 		"LanmanServer",
 		"upnphost",
-		"SSDPSRV"
+		"SSDPSRV",
+		"UsoSvc", "wuauserv"
 	],
 	"Services_bak": [
-		"FontCache",
-		"UsoSvc", "wuauserv"
+		"FontCache"
 	]
 }
