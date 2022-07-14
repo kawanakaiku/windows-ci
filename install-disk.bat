@@ -19,15 +19,19 @@ if not exist "%wim_file%" (
 echo install drivers(y/n):
 set /p install_drivers=
 
-if "%install_drivers%"=="y" (
+setlocal ENABLEDELAYEDEXPANSION
+
+if "%install_drivers:~0,1%"=="y" (
   echo input drvers path:
   set /p drivers_dir=
-  if not exist "%drivers_dir%" (
-    echo "%drivers_dir%" does not exist
+  if not exist "!drivers_dir!" (
+    echo "!drivers_dir!" does not exist
     pause
     exit /b 1
   )
 )
+
+endlocal
 
 echo reboot on finish (y/n):
 set /p reboot=
@@ -65,7 +69,7 @@ DISM /Image:W:\ /Set-LayeredDriver:6
 
 BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
 
-if "%install_drivers%"=="y" (
+if "%install_drivers:~0,1%"=="y" (
   Dism /Image:W:\ /Add-Driver /Driver:"%drivers_dir%" /Recurse
 )
 
