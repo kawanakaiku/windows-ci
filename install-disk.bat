@@ -3,6 +3,8 @@ if defined SESSIONNAME (PowerShell start """%~0""" -verb RunAs & Exit /B)
 
 @echo off
 
+setlocal ENABLEDELAYEDEXPANSION
+
 echo list disk | diskpart
 echo input disk number:
 set /p disk_num=
@@ -19,8 +21,6 @@ if not exist "%wim_file%" (
 echo install drivers(y/n):
 set /p install_drivers=
 
-setlocal ENABLEDELAYEDEXPANSION
-
 if "%install_drivers:~0,1%"=="y" (
   echo input drvers path:
   set /p drivers_dir=
@@ -30,8 +30,6 @@ if "%install_drivers:~0,1%"=="y" (
     exit /b 1
   )
 )
-
-endlocal
 
 echo reboot on finish (y/n):
 set /p reboot=
