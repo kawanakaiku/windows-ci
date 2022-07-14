@@ -70,7 +70,7 @@ DISM /Image:W:\ /Set-LayeredDriver:6
 BCDBOOT W:\Windows /l ja-jp /s S: /f UEFI
 
 if "%install_drivers:~0,1%"=="y" (
-  Dism /Image:W:\ /Add-Driver /Driver:"%drivers_dir%" /Recurse
+  Dism /Image:W:\ /Add-Driver /Driver:"!drivers_dir!" /Recurse
 )
 
 MountVol W: /D
