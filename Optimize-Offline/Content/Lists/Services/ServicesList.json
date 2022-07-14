@@ -18,11 +18,17 @@
                 "SysMain",
 		"VSS",
 		"WaaSMedicSvc",
-		"WSearch"
+		"WSearch",
+		"fdPHost", "FDResPub",
+		"p2psvc", "PNRPsvc", "p2pimsvc", "PNRPAutoReg",
+		"UmRdpService", "SessionEnv", "TermService",
+		"RemoteRegistry", "RemoteAccess",
+		"LanmanServer",
+		"upnphost",
+		"SSDPSRV"
 	],
 	"Services_bak": [
 		"FontCache",
-		"UsoSvc",
-		"wuauserv"
+		"UsoSvc", "wuauserv"
 	]
 }
