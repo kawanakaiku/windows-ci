@@ -320,7 +320,7 @@ Function Optimize-Offline
 			Break
 		}
 
-		If ($InstallInfo.Architecture -ne 'amd64')
+		If ($false -And $InstallInfo.Architecture -ne 'amd64')
 		{
 			$PSCmdlet.WriteWarning($OptimizeData.UnsupportedImageArch -f $InstallInfo.Architecture)
 			$TempDirectory | Purge
