@@ -11,61 +11,26 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: download
-        shell: bash
+        shell: cmd
         run: |          
-          python.exe -u <<'PYTHON'
-          import os
-          import json
-          class ObjectLike(dict):
-            __getattr__ = dict.get
-          wim_file = os.path.join(os.getcwd(), "C:/install.wim")
-          conf_file = os.path.join(os.getcwd(), "Optimize-Offline", "Configuration.json")
-          with open(conf_file, "r", encoding="utf_8_sig") as f:
-            conf_json = json.loads(f.read())
-            
-          conf_json["SourcePath"] = wim_file
-          conf_json["WindowsApps"] = "Whitelist"
-          conf_json["SystemApps"] = "Whitelist"  # "Blacklist"
-          conf_json["Capabilities"] = "Blacklist"
-          #### conf_json["Packages"] = "Blacklist"  # convered by Capabilities
-          conf_json["FeaturesToDisable"] = "List"
-          conf_json["Services"] = "List"
-          conf_json["DormantDefender"] = True
-          conf_json["Registry"] = True
-          #### conf_json["Additional"]["Setup"] = True  # wont boot
-          conf_json["Additional"]["RegistryTemplates"] = True
-          conf_json["Additional"]["NetFx3"] = False
-          conf_json["ComponentCleanup"] = True
-          conf_json["CompressionType"] = "Solid"
-          #conf_json["CompressionType"] = "Fast"
-          conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
-          conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
-          conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
-          conf_json["SelectiveRegistry"]["DormantOneDrive"] = True
-          conf_json["SelectiveRegistry"]["Disable3rdPartyApps"] = True
-          conf_json["SelectiveRegistry"]["RemoveTaskbarPinnedIcons"] = True
-          conf_json["SelectiveRegistry"]["DisableTeamsApp"] = True
-          conf_json["SelectiveRegistry"]["RunAsTiContextMenu"] = True
-          conf_json["ImageIndex"] = 1
-
-          with open(conf_file, "w", encoding="utf_8_sig") as f:
-            json.dump(conf_json, f, indent=2)
-          PYTHON
+          wget https://github.com/kawanakaiku/windows-ci/releases/download/python3/Python3.10.5.zip
+          unzip -q Python3.10.5.zip
           
-      - name: Execute
-        shell: powershell
+      - name: build wheel
+        shell: cmd
         run: |
-          cd Optimize-Offline
-          # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
-          Set-Executionpolicy Unrestricted
-          .\Start-Optimize.ps1
+          mkdir windows-wheels
+          cd Python310
+          python.exe -m pip install -U pip
+          python.exe -m pip install -U wheel setuptools
+          python.exe -m pip wheel --wheel-dir ..\windows-wheels pyopenjtalk
           
       - name: Store whl files
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: windows-wheels
-          path: Optimize-Offline/Optimize-Offline_*
+          path: windows-wheels
           
       - name: Waiting for debugger
         if: failure()
