@@ -17,13 +17,16 @@ jobs:
       - name: build wheel
         shell: cmd
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          rem call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          
+          set SETUPTOOLS_USE_DISTUTILS=stdlib
           
           mkdir windows-wheels
           cd Python310
           python.exe -m pip install -U pip
           python.exe -m pip install -U wheel setuptools
-          python.exe -m pip wheel --wheel-dir ..\windows-wheels pyopenjtalk
+          python.exe -m pip install numpy cython six tqdm
+          python.exe -m pip wheel --no-deps --wheel-dir ..\windows-wheels pyopenjtalk
           
       - name: Store whl files
         if: always()
