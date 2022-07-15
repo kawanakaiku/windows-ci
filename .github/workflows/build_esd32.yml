@@ -1,0 +1,93 @@
+name: build_esd32
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v3
+          
+      - name: Config
+        shell: bash
+        run: |          
+          python.exe -u <<'PYTHON'
+          import os
+          import json
+          class ObjectLike(dict):
+            __getattr__ = dict.get
+          wim_file = os.path.join(os.getcwd(), "C:/install.wim")
+          conf_file = os.path.join(os.getcwd(), "Optimize-Offline", "Configuration.json")
+          with open(conf_file, "r", encoding="utf_8_sig") as f:
+            conf_json = json.loads(f.read())
+            
+          conf_json["SourcePath"] = wim_file
+          conf_json["WindowsApps"] = "Whitelist"
+          conf_json["SystemApps"] = "Whitelist"  # "Blacklist"
+          conf_json["Capabilities"] = "Blacklist"
+          #### conf_json["Packages"] = "Blacklist"  # convered by Capabilities
+          conf_json["FeaturesToDisable"] = "List"
+          conf_json["Services"] = "List"
+          conf_json["DormantDefender"] = True
+          conf_json["Registry"] = True
+          #### conf_json["Additional"]["Setup"] = True  # wont boot
+          conf_json["Additional"]["RegistryTemplates"] = True
+          conf_json["Additional"]["NetFx3"] = False
+          conf_json["ComponentCleanup"] = True
+          conf_json["CompressionType"] = "Solid"
+          #conf_json["CompressionType"] = "Fast"
+          conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
+          conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
+          conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
+          conf_json["SelectiveRegistry"]["DormantOneDrive"] = True
+          conf_json["SelectiveRegistry"]["Disable3rdPartyApps"] = True
+          conf_json["SelectiveRegistry"]["RemoveTaskbarPinnedIcons"] = True
+          conf_json["SelectiveRegistry"]["DisableTeamsApp"] = True
+          conf_json["SelectiveRegistry"]["RunAsTiContextMenu"] = True
+          conf_json["ImageIndex"] = 1
+
+          with open(conf_file, "w", encoding="utf_8_sig") as f:
+            json.dump(conf_json, f, indent=2)
+          PYTHON
+      
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: C:/install.wim
+          key: Win10_21H2_Japanese_x32.wim
+          
+      - name: Download source
+        shell: bash
+        run: |
+          test -f C:/install.wim && exit || true
+          
+          python.exe -u <<'PYTHON'
+          from urllib.request import urlopen
+          with open('C:/install.wim', 'wb') as f:
+            for i in ['aa', 'ab', 'ac', 'ad', 'ae']:
+              url = 'https://github.com/kawanakaiku/test-ci/releases/download/win10/Win10_21H2_Japanese_x32.wim_'+i
+              print(url)
+              part = urlopen(url).read()
+              f.write(part)
+          PYTHON
+        
+      - name: Execute
+        shell: powershell
+        run: |
+          cd Optimize-Offline
+          # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          Set-Executionpolicy Unrestricted
+          .\Start-Optimize.ps1
+          
+      - name: Store esd files
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: install.esd
+          path: Optimize-Offline/Optimize-Offline_*
+          
+      - name: Waiting for debugger
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
