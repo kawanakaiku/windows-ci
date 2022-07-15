@@ -13,7 +13,7 @@ jobs:
       - name: download
         shell: cmd
         run: |          
-          C:\msys64\usr\bin\wget.exe https://github.com/kawanakaiku/windows-ci/releases/download/python3/Python3.10.5.zip
+          C:\msys64\usr\bin\wget.exe -nv -nc https://github.com/kawanakaiku/windows-ci/releases/download/python3/Python3.10.5.zip
           C:\msys64\usr\bin\unzip.exe -q Python3.10.5.zip
           
       - name: build wheel
