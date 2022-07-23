@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_esd:
     runs-on: windows-2019
 
     steps:
@@ -37,7 +37,7 @@ jobs:
           conf_json["Additional"]["NetFx3"] = False
           conf_json["ComponentCleanup"] = True
           conf_json["CompressionType"] = "Solid"
-          #conf_json["CompressionType"] = "Fast"
+          conf_json["CompressionType"] = "Fast"
           conf_json["SelectiveRegistry"]["DisableWindowsUpgrade"] = True
           conf_json["SelectiveRegistry"]["DisableWindowsUpdateMicrosoft"] = True
           conf_json["SelectiveRegistry"]["DisableDriverUpdate"] = False
@@ -93,3 +93,11 @@ jobs:
       - name: Waiting for debugger
         if: failure()
         uses: mxschmitt/action-tmate@v3
+
+  build_vhd:
+      uses: ./.github/workflows/build_vhd.yml
+      needs: build_esd
+      with:
+        artifact_name: install.esd
+        vhd_name: Win10_21H2_Japanese_x64
+        
