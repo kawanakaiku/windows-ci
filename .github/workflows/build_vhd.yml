@@ -18,6 +18,39 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.artifact_name }}
+
+      - name: edit wim
+        shell: powershell
+        run: |
+          function rmrf {
+            Param(
+              [Parameter(Mandatory=$true)]
+              [string]$Target
+            )
+            Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $Target
+          }
+          mkdir mnt_offline
+          Dism.exe /Mount-Image /ImageFile:( Get-ChildItem */*/*.wim ).Name /index:1 /MountDir:mnt_offline
+          subst.exe w: mnt_offline
+          
+          rmrf "W:\Program Files (x86)\Microsoft"
+          rmrf "W:\Program Files\Microsoft"
+          rmrf "W:\Program Files (x86)\Windows Defender"
+          rmrf "W:\Program Files\Windows Defender"
+          rmrf "W:\ProgramData\Microsoft\Windows Defender"
+          rmrf "W:\Windows\SysWOW64\OneDriveSetup.exe"
+          rmrf "W:\Windows\System32\OneDriveSetup.exe"
+          rmrf "W:\Windows\System32\CompatTelRunner.exe"
+          rmrf "W:\Windows\System32\SearchFilterHost.exe"
+          rmrf "W:\Windows\System32\SearchIndexer.exe"
+          rmrf "W:\Windows\System32\SearchProtocolHost.exe"
+          rmrf "W:\Program Files (x86)\Internet Explorer"
+          rmrf "W:\Program Files\Internet Explorer"
+          rmrf "W:\Windows\System32\SecurityHealthService.exe"
+          
+          mountvol.exe w: /D
+          Dism.exe /Unmount-Image /MountDir:mnt_offline /Commit
+          rmrf mnt_offline
           
       - name: create vhd
         shell: bash
