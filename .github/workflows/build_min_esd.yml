@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
           
+      - name: download
+        shell: bash
+        run: |          
+          wget -nv https://download.sysinternals.com/files/PSTools.zip
+          unzip PSTools.zip -d C:/PSTools
+          rm PSTools.zip
+          
       - name: Config
         shell: bash
         run: |          
@@ -79,7 +86,7 @@ jobs:
         shell: powershell
         run: |
           cd Optimize-Offline
-          ..\PowerRun_x64.exe powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          C:\PSTools\PsExec64.exe -accepteula powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
           # Set-Executionpolicy Unrestricted
           # .\Start-Optimize.ps1
           
