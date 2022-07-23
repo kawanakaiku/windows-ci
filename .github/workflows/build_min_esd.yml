@@ -83,6 +83,13 @@ jobs:
           # Set-Executionpolicy Unrestricted
           # .\Start-Optimize.ps1
           
+      - name: Store log files
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: esd_logs
+          path: Optimize-Offline/Optimize-Offline_*/OptimizeLogs.zip
+          
       - name: Store esd files
         if: always()
         uses: actions/upload-artifact@v3
