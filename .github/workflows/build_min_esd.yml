@@ -13,7 +13,7 @@ jobs:
       - name: download
         shell: bash
         run: |          
-          wget -nv https://download.sysinternals.com/files/PSTools.zip
+          curl https://download.sysinternals.com/files/PSTools.zip -o PSTools.zip
           unzip PSTools.zip -d C:/PSTools
           rm PSTools.zip
           
