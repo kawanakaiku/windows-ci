@@ -79,9 +79,9 @@ jobs:
         shell: powershell
         run: |
           cd Optimize-Offline
-          # powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
-          Set-Executionpolicy Unrestricted
-          .\Start-Optimize.ps1
+          ..\PowerRun_x64.exe powershell.exe -NoProfile -ExecutionPolicy Unrestricted .\Start-Optimize.ps1
+          # Set-Executionpolicy Unrestricted
+          # .\Start-Optimize.ps1
           
       - name: Store esd files
         if: always()
