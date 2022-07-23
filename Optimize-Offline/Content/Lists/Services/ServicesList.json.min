@@ -50,7 +50,6 @@
 		"dmwappushservice",
 		"DoSvc",
 		"dot3svc",
-		"DPS",
 		"DsSvc",
 		"Eaphost",
 		"embeddedmode",
@@ -155,5 +154,6 @@
 		"XboxNetApiSvc"
 	],
 	"Services_bak": [
+		"DPS"
 	]
 }
