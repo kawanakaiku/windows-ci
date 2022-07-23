@@ -1,0 +1,62 @@
+name: build_vhd
+
+on:
+  workflow_call:
+    inputs:
+      artifact_name:
+        required: true
+        type: string
+      vhd_name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact_name }}
+          
+      - name: create vhd
+        shell: bash
+        run: |
+          diskpart.exe << DISKPART
+            create vdisk file="${{ inputs.vhd_name }}.vhd" maximum=80000 type=expandable
+            select vdisk file="${{ inputs.vhd_name }}.vhd"
+            attach vdisk
+            clean
+            convert mbr
+            create partition primary size=500
+            format quick fs=fat32
+            assign letter="s"
+            active
+            create partition primary
+            format quick fs=ntfs
+            assign letter="w"
+          DISKPART
+
+      - name: build vhd
+        shell: powershell
+        run: |
+          Dism.exe /Apply-Image /ImageFile:( Get-ChildItem */*/*.wim ).Name /index:1 /ApplyDir:W:\
+          bcdboot.exe W:\Windows /l ja-jp /s S: /f ALL
+          Dism.exe /Image:W:\ /Set-LayeredDriver:6
+
+      - name: detach vhd
+        shell: bash
+        run: |
+          mountvol.exe w: /D
+          mountvol.exe s: /D
+          diskpart.exe << DISKPART
+            select vdisk file="${{ inputs.vhd_name }}.vhd"
+            detach vdisk
+          DISKPART
+          
+      - name: Store vhd file
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: vhd
+          path: ${{ inputs.vhd_name }}.vhd
