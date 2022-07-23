@@ -117,7 +117,6 @@
 		"TermService",
 		"Themes",
 		"TieringEngineService",
-		"TrkWks",
 		"tzautoupdate",
 		"UmRdpService",
 		"upnphost",
@@ -133,8 +132,6 @@
 		"wbengine",
 		"WbioSrvc",
 		"wcncsvc",
-		"WdiServiceHost",
-		"WdiSystemHost",
 		"WebClient",
 		"Wecsvc",
 		"wercplsupport",
@@ -154,6 +151,9 @@
 		"XboxNetApiSvc"
 	],
 	"Services_bak": [
-		"DPS"
+		"DPS",
+		"TrkWks",
+		"WdiServiceHost",
+		"WdiSystemHost"
 	]
 }
