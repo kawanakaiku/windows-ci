@@ -19,6 +19,11 @@ jobs:
         with:
           name: ${{ inputs.artifact_name }}
 
+      - name: ls
+        shell: bash
+        run: |
+          ls -lha 
+          
       - name: edit wim
         shell: powershell
         run: |
@@ -93,7 +98,4 @@ jobs:
         with:
           name: vhd
           path: ${{ inputs.vhd_name }}.vhd
-          
-      - name: Waiting for debugger
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
+
