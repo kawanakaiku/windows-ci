@@ -28,7 +28,6 @@
 		"SSDPSRV",
 		"UsoSvc", "wuauserv", "DoSvc", "BITS", "WaaSMedicSvc",
 		"FontCache",
-		"Schedule",
 		"AJRouter",
 		"ALG",
 		"AppIDSvc",
@@ -154,6 +153,7 @@
 		"DPS",
 		"TrkWks",
 		"WdiServiceHost",
-		"WdiSystemHost"
+		"WdiSystemHost",
+		"Schedule"
 	]
 }
