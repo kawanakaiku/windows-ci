@@ -28,7 +28,6 @@
 		"SSDPSRV",
 		"UsoSvc", "wuauserv", "DoSvc", "BITS",
 		"FontCache",
-		"Schedule",
 		"AxInstSV",
 		"BluetoothUserService",
 		"BTAGService",
