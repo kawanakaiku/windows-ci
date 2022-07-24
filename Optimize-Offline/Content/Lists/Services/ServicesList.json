@@ -26,10 +26,10 @@
 		"LanmanServer",
 		"upnphost",
 		"SSDPSRV",
-		"UsoSvc", "wuauserv", "DoSvc", "BITS"
+		"UsoSvc", "wuauserv", "DoSvc", "BITS",
+		"Schedule"
 	],
 	"Services_bak": [
-		"Schedule",
 		"FontCache"
 	]
 }
