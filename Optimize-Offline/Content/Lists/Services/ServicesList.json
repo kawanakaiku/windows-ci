@@ -27,9 +27,9 @@
 		"upnphost",
 		"SSDPSRV",
 		"UsoSvc", "wuauserv", "DoSvc", "BITS",
-		"FontCache",
-		"Schedule"
+		"FontCache"
 	],
 	"Services_bak": [
+		"Schedule"
 	]
 }
