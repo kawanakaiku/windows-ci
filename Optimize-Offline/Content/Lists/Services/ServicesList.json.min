@@ -9,7 +9,6 @@
 		"DusmSvc",
 		"edgeupdate",
 		"edgeupdatem",
-		"FontCache",
 		"iphlpsvc",
 		"PimIndexMaintenanceSvc",
 		"SSDPSRV",
@@ -27,7 +26,6 @@
 		"upnphost",
 		"SSDPSRV",
 		"UsoSvc", "wuauserv", "DoSvc", "BITS",
-		"FontCache",
 		"AxInstSV",
 		"BluetoothUserService",
 		"BTAGService",
@@ -91,6 +89,7 @@
 		"TrkWks",
 		"WdiServiceHost",
 		"WdiSystemHost",
-		"Schedule"
+		"Schedule",
+		"FontCache"
 	]
 }
