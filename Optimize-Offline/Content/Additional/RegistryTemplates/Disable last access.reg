@@ -1,5 +1,6 @@
 Windows Registry Editor Version 5.00
 
 ; Disable fast statup
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
-"NtfsDisableLastAccessUpdate"=dword:80000003
+; boot loops and setup wont start
+;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+;"NtfsDisableLastAccessUpdate"=dword:80000003
