@@ -102,7 +102,6 @@ jobs:
         uses: mxschmitt/action-tmate@v3
 
   build_vhd:
-      if: ${{ ! always() }}
       uses: ./.github/workflows/build_vhd.yml
       needs: build_esd
       with:
