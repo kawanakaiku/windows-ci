@@ -35,7 +35,7 @@ jobs:
             Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $Target
           }
           mkdir mnt_offline
-          Dism.exe /Mount-Image /ImageFile:( Get-ChildItem */*.wim ).Name /index:1 /MountDir:mnt_offline
+          Dism.exe /Mount-Image "/ImageFile:$( Get-ChildItem */*.wim ).Name" /index:1 /MountDir:mnt_offline
           subst.exe w: mnt_offline
           
           rmrf "W:\Program Files (x86)\Microsoft"
@@ -78,7 +78,7 @@ jobs:
       - name: build vhd
         shell: powershell
         run: |
-          Dism.exe /Apply-Image /ImageFile:( Get-ChildItem */*.wim ).Name /index:1 /ApplyDir:W:\
+          Dism.exe /Apply-Image "/ImageFile:$( Get-ChildItem */*.wim ).Name" /index:1 /ApplyDir:W:\
           bcdboot.exe W:\Windows /l ja-jp /s S: /f ALL
           Dism.exe /Image:W:\ /Set-LayeredDriver:6
 
