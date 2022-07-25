@@ -92,6 +92,12 @@ jobs:
             detach vdisk
           DISKPART
           
+      - name: get dism log
+        if: always()
+        shell: cmd
+        run: |
+          type C:\Windows\Logs\DISM\dism.log
+          
       - name: Store vhd file
         if: always()
         uses: actions/upload-artifact@v3
