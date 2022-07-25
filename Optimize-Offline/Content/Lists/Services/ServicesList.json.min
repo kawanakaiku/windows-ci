@@ -9,6 +9,7 @@
 		"DusmSvc",
 		"edgeupdate",
 		"edgeupdatem",
+		"FontCache",
 		"iphlpsvc",
 		"PimIndexMaintenanceSvc",
 		"SSDPSRV",
@@ -89,7 +90,6 @@
 		"TrkWks",
 		"WdiServiceHost",
 		"WdiSystemHost",
-		"Schedule",
-		"FontCache"
+		"Schedule"
 	]
 }
