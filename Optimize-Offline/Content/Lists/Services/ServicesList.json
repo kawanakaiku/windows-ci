@@ -26,7 +26,7 @@
 		"LanmanServer",
 		"upnphost",
 		"SSDPSRV",
-		"UsoSvc", "wuauserv", "DoSvc", "BITS", "TrustedInstaller", "WaaSMedicSvc"
+		"UsoSvc", "wuauserv", "DoSvc", "BITS", "WaaSMedicSvc"
 	],
 	"Services_bak": [
 		"Schedule"
