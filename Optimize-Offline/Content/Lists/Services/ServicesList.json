@@ -14,7 +14,6 @@
 		"PimIndexMaintenanceSvc",
 		"SSDPSRV",
 		"PcaSvc",
-		"Spooler",
                 "SysMain",
 		"VSS",
 		"WaaSMedicSvc",
@@ -29,6 +28,7 @@
 		"UsoSvc", "wuauserv", "DoSvc", "BITS", "WaaSMedicSvc"
 	],
 	"Services_bak": [
-		"Schedule"
+		"Schedule",
+		"Spooler"
 	]
 }
